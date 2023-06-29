@@ -1,0 +1,74 @@
+<div class="container mt-4">
+    <h2>Items</h2>
+  
+    <!-- Formulario para crear/editar un item -->
+    <form (ngSubmit)="currentItem._id ? updateItem(currentItem._id, currentItem) : createItem(currentItem)">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.name" name="name" required>
+        
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.description" name="description" required>
+      </div>
+
+      <div class="form-group">
+        <label for="marca">marca:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.marca" name="marca" required>
+      </div>
+
+      <div class="form-group">
+        <label for="ram">ram:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.ram" name="ram" required>
+      </div>
+      <div class="form-group">
+        <label for="date">date:</label>
+        <input type="text" class="form-control" [(ngModel)]="currentItem.date" name="date" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">{{currentItem._id ? 'Update' : 'Add'}}</button>
+    </form>
+    <div class="form-group">
+      <label for="search">Search:</label>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" name="search" (input)="filterItems()">
+    </div>
+
+    
+
+    <table class="table">
+      <!-- Encabezados de la tabla -->
+      <!-- ... -->
+  
+      
+    </table>
+  
+    <hr>
+  
+    <!-- Lista de items -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>marca</th>
+          <th>ram</th>
+          <th>date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.marca }}</td>
+          <td>{{ item.ram }}</td>
+          <td>{{ item.date }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="editItem(item._id)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteItem(item._id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
